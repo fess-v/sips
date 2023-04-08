@@ -79,6 +79,10 @@ Here's an example of a separate executor interface for stx-transfer from a smart
 )
 ```
 
+## Interactions diagram
+
+![sip-02X-simple-interactions-diagram.png](sip-02X-simple-interactions-diagram.png)
+
 ## Executor contract call from a smart contract
 
 `TODO: add references`
