@@ -101,7 +101,40 @@ Not applicable
 
 ## Multisig wallet
 
-`TODO: add references`
+`TODO: add Asigna github instead of copypasting code`
+
+`TODO: finalize signature method, select appropriate signature buff size`
+
+```
+(define-constant SIGNATURE-SIZE u65)
+(define-constant OWNER-SIGNATURE-SIZE u22)
+(define-constant FULL-SIGNATURE-SIZE u87)
+
+(define-private (get-signatures-with-owners-from-buff (owner-to-check uint) (state { signature: (buff 2000), owners: (list 20 principal), signatures: (list 20 (buff 65)) }))
+    (
+        let (
+            (start (* owner-to-check FULL-SIGNATURE-SIZE))
+            (signature (unwrap! (as-max-len? (unwrap! (slice? (get signature state) start (+ start SIGNATURE-SIZE)) state) u65) state))
+            (owner (unwrap! (from-consensus-buff? principal (unwrap! (slice? (get signature state) (+ start SIGNATURE-SIZE) (+ start FULL-SIGNATURE-SIZE)) state)) state))
+        )
+        (merge state {
+            owners: (unwrap! (as-max-len? (append (get owners state) owner) u20) state),
+            signatures: (unwrap! (as-max-len? (append (get signatures state) signature) u20) state)
+        })
+))
+
+(define-read-only (is-valid-signature (message-hash (buff 32)) (signature (buff 2000))) 
+    (let (
+        (signature-len (len signature))
+        (number-of-signers (/ signature-len FULL-SIGNATURE-SIZE))
+        (it (unwrap! (slice? ITERATOR u0 number-of-signers) ERR-UNWRAP-ITERATOR))
+        (signatures-with-owners (fold get-signatures-with-owners-from-buff it {signature: signature, owners: (list), signatures: (list)}))
+        (owners-signed (get owners signatures-with-owners))
+        (resulted-owners (get res (fold process-signature owners-signed {message-hash: message-hash, signatures: (get signatures signatures-with-owners), owners-signed: owners-signed, res: (list)})))
+        )
+        (ok (>= (len resulted-owners) (var-get threshold)))
+))
+```
 
 ## Smart contract wallet
 
