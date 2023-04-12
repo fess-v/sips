@@ -22,7 +22,7 @@ Sign-off: -
 
 All smart contract wallet types, including multisignature wallets, DAOs, general purpose smart contract wallets, need to have a possibility to interact with other contracts on the blockchain network.
 
-Clarity language has its own type and static analyzer restrictions. These restrictions include a need to have predefined traits for external contract calls and a need to have a passed trait instead of a contract principal because it can't be up-casted to a trait. 
+Clarity language has its own type and static analyzer restrictions. These restrictions require predefined traits for external contract calls and need to have a passed trait instead of a contract principal because it can't be up-casted to a trait. 
 Therefore, the only way to call any external smart contract from a smart contract wallet is to pass from a user that external contract principal as a trait which was also predefined in the smart contract wallet.
 
 It opens a task which this proposal aims to solve - creation of a standard interface which could be used as a predefined trait which other smart contracts in Stacks could support to be able to be integrated with such smart contract wallets.
@@ -34,8 +34,7 @@ This SIP’s copyright is held by the Stacks Open Internet Foundation.
 
 # Introduction
 
-A general purpose smart contract wallet can't be created for now in Stacks because of Clarity restrictions on external smart contract calls. But it's definitely possible to make smart contract wallets which will be secure and covering 99.99% use cases, therefore it's important to make it possible for them to emerge.
-Smart contract wallet standards will open this field for developers and make dApps integrations faster and easier.
+A general purpose smart contract wallet can't be created, for now, in Stacks because of Clarity restrictions on external smart contract calls. But it's definitely possible to make smart contract wallets which will be secure and cover 99.99% of the use cases and therefore important to enable their creation. Smart contract wallet standards will open this field for developers and make dApps integrations faster and easier.
 
 # Specification
 
