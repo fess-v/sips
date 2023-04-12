@@ -20,7 +20,6 @@ Sign-off: -
 
 # Abstract
 
-
 Signatures are widely used by many dApps within the blockchain ecosystem.
 Mostly signatures are created using externally owned private keys and could be verified by an accepted way in
 _[SIP018](https://github.com/stacksgov/sips/blob/main/sips/sip-018/sip-018-signed-structured-data.md)_, but smart contract wallets do not possess a private key.
@@ -34,8 +33,8 @@ This SIP’s copyright is held by the Stacks Open Internet Foundation.
 
 # Introduction
 
-Lots of decentralized applications utilize message signatures for their logic, mostly for interaction with the backend. For instance, NFT marketplaces, decentralized exchanges, authorization purposes, and many more.
-Smart contract wallets could be used as a second security layer for controlling and managing assets, DAOs, especially multisignature ones, therefore to make it possible to integrate such wallets with dApps we need a standard applied for signatures verification.
+Lots of decentralized applications utilize message signatures for their logic, mostly for interaction with the backend. For instance, NFT marketplaces, decentralized exchanges, authorization purposes, and many more. Smart contract wallets can be used as a second security layer for controlling and managing assets, DAOs, and other contracts (especially multisignature ones) and therefore integration should be made possible between wallets and dApps. For this we need a standard applied for signatures verification.
+
 
 
 # Specification
