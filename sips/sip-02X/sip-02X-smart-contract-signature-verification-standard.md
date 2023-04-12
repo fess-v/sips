@@ -139,4 +139,5 @@ Not applicable
 
 `TODO: add references`
 
+`TODO: discuss possible on-chain signatures similarly to https://eips.ethereum.org/EIPS/eip-191 in gnosis safe applications`
 -- 
